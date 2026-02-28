@@ -1,7 +1,7 @@
 # Bus Reservations Data Cleaning – One-Page Demo Note
 
 ## Dataset Snapshot
-- Raw input file: `data/raw_bookings.csv`
+- Raw input file: `data/raw_booking.csv`
 - Total raw records: **300**
 - Clean/transformed output: `output/cleaned_bookings.csv` (**195 = 65%**)
 - Invalid/flagged output: `output/invalid_bookings.csv` (**105 = 35%**)
