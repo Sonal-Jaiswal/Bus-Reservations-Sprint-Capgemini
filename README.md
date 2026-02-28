@@ -3,7 +3,7 @@
 This project demonstrates end-to-end **data cleaning and transformation** for bus reservations using Core Java.
 
 It includes:
-- Dirty raw dataset generation (`300` records)
+- Single input CSV cleaning (`300` records)
 - Rule-based cleaning pipeline
 - Invalid record flagging with reason codes
 - Aggregated reporting for analytics
@@ -41,11 +41,11 @@ bus-cleaning
 ├── src/main/resources
 │   ├── application.properties
 │   └── log4j2.xml
-├── data/raw_bookings.csv
+├── data/raw_booking.csv
 ├── output/
 ├── logs/
 ├── DEMO_PRESENTATION_NOTE.md
-└── generate_dataset.py
+└── README.md
 ```
 
 ## Dataset & Output Summary
@@ -55,7 +55,7 @@ bus-cleaning
 - Invalid/flagged records: **105 (35%)**
 
 Generated files:
-- `data/raw_bookings.csv`
+- `data/raw_booking.csv`
 - `output/cleaned_bookings.csv`
 - `output/invalid_bookings.csv`
 - `output/aggregated_report.csv`
@@ -90,6 +90,8 @@ This project now logs all major data operations:
 - Rule pass/fail at each stage
 - Exact invalid rejection reason
 - Output file write counts
+- Use-case sequence execution (`Use Case 1` to `Use Case 10`)
+- Final pass/fail summary for each use case
 
 Log outputs:
 - Console logs (runtime)
@@ -113,17 +115,21 @@ After running the app, check:
 
 From project root:
 
-1) Generate raw dirty dataset
+1) Keep your input dataset here:
 
-```bash
-/opt/homebrew/bin/python3 generate_dataset.py
-```
+`data/raw_booking.csv`
 
 2) Compile and run cleaning pipeline
 
 ```bash
 mvn -q compile exec:java
 ```
+
+3) Verify generated files:
+
+- `output/cleaned_bookings.csv`
+- `output/invalid_bookings.csv`
+- `output/aggregated_report.csv`
 
 ## What is `aggregated_report.csv`?
 

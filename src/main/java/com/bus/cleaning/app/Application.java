@@ -5,7 +5,7 @@ import com.bus.cleaning.service.CleaningPipeline;
 
 public class Application {
     public static void main(String[] args) {
-        String rawPath = "data/raw_bookings.csv";
+        String rawPath = "data/raw_booking.csv";
         String cleanedPath = "output/cleaned_bookings.csv";
         String invalidPath = "output/invalid_bookings.csv";
         String aggregatePath = "output/aggregated_report.csv";
