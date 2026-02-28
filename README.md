@@ -14,15 +14,37 @@ It includes:
 bus-cleaning
 ├── src/main/java/com/bus/cleaning
 │   ├── app
+│   │   └── Application.java
 │   ├── config
+│   │   ├── AppConfig.java
+│   │   └── DbConfig.java
 │   ├── model
+│   │   └── Booking.java
 │   ├── repository
+│   │   ├── BookingReader.java
+│   │   ├── CsvBookingReader.java
+│   │   ├── BookingWriter.java
+│   │   ├── CsvBookingWriter.java
+│   │   └── DbBookingRepository.java
 │   ├── service
+│   │   ├── CleaningPipeline.java
+│   │   ├── DuplicateService.java
+│   │   └── AggregationService.java
 │   └── rules
+│       ├── CleaningRule.java
+│       ├── NameNormalizationRule.java
+│       ├── NumericValidationRule.java
+│       ├── DateStandardizationRule.java
+│       ├── StatusNormalizationRule.java
+│       ├── CodeMappingRule.java
+│       └── DerivedFieldsRule.java
 ├── src/main/resources
+│   ├── application.properties
+│   └── log4j2.xml
 ├── data/raw_bookings.csv
 ├── output/
 ├── logs/
+├── DEMO_PRESENTATION_NOTE.md
 └── generate_dataset.py
 ```
 
@@ -58,6 +80,34 @@ Invalid reasons currently covered in output:
 - `INVALID_DATE`
 - `INVALID_CODE`
 - `INVALID_STATUS`
+
+## Logging (Everything We Do With Data)
+
+This project now logs all major data operations:
+- Pipeline start/end
+- Raw file load count
+- Per-record processing (`booking_id`)
+- Rule pass/fail at each stage
+- Exact invalid rejection reason
+- Output file write counts
+
+Log outputs:
+- Console logs (runtime)
+- File logs: `logs/cleaning.log`
+
+To verify logs quickly:
+
+```bash
+tail -n 50 logs/cleaning.log
+```
+
+## Check / Verification
+
+After running the app, check:
+- `output/cleaned_bookings.csv` has transformed valid records
+- `output/invalid_bookings.csv` contains multiple reason types
+- `output/aggregated_report.csv` has grouped summary by `ROUTE` and `STATUS`
+- `logs/cleaning.log` contains step-by-step execution trace
 
 ## How to Run
 
